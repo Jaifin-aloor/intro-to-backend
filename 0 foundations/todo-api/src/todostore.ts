@@ -1,4 +1,4 @@
-export type item = {
+export type Item = {
     id: string;
     content: string;
     state: boolean;
@@ -6,4 +6,4 @@ export type item = {
     updatedAt: number;
 }
 
-export const items: item[] = [];
+export const items: Item[] = [];
