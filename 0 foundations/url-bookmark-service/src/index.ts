@@ -6,6 +6,7 @@ import cors from "cors";
 import { createBookmark } from "./createBookmark.js";
 import { readOneBookMark, readBookMarks } from "./readBookmark.js";
 import { readTags, readOneTag } from "./readTags.js";
+import { deleteBookmark } from "./deleteBookmark.js";
 
 const app: Express = express();
 app.use(express.json());
@@ -24,6 +25,7 @@ router.get("/bookmarks", readBookMarks);
 router.get("/bookmarks/:id", readOneBookMark);
 router.get("/tags", readTags);
 router.get("/tags/:tag", readOneTag);
+router.delete("/bookmarks/:id", deleteBookmark);
 
 
 app.use(router);
