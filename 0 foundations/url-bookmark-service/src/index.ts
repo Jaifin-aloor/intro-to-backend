@@ -7,6 +7,7 @@ import { createBookmark } from "./createBookmark.js";
 import { readOneBookMark, readBookMarks } from "./readBookmark.js";
 import { readTags, readOneTag } from "./readTags.js";
 import { deleteBookmark } from "./deleteBookmark.js";
+import { updateBookmark } from "./updateBookmark.js";
 
 const app: Express = express();
 app.use(express.json());
@@ -26,6 +27,7 @@ router.get("/bookmarks/:id", readOneBookMark);
 router.get("/tags", readTags);
 router.get("/tags/:tag", readOneTag);
 router.delete("/bookmarks/:id", deleteBookmark);
+router.put("/bookmarks/:id", updateBookmark)
 
 
 app.use(router);
