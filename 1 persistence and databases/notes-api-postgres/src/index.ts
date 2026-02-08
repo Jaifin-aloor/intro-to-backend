@@ -2,6 +2,7 @@
 import type { Express, Application, Request, Response } from "express"
 import express from "express";
 import { log } from "node:console";
+import Database from "./config/database.js";
 
 
 class App{
@@ -9,6 +10,13 @@ class App{
 
     constructor(){
         this.app = express();
+        this.databaseSync();
+        this.routes();
+    }
+
+    protected databaseSync(): void{
+        const db = new Database();
+        db.sequelize?.sync();
     }
 
     protected routes(): void {
