@@ -1,4 +1,5 @@
-import { Sequelize } from "sequelize-typescript";
+import { Sequelize, Model } from 'sequelize-typescript';
+import { Note } from '../model/Note.js';
 import * as dotenv from "dotenv"
 dotenv.config()
 
@@ -22,7 +23,9 @@ class Database {
             password: this.POSTGRES_PASSWORD,
             port: this.POSTGRES_PORT,
             host: this.POSTGRES_HOST,
-            dialect: "postgres" 
+            dialect: "postgres",
+            models: [Note]
+
         });
 
         await this.sequelize.authenticate().then(() => {
