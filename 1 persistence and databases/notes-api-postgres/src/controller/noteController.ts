@@ -1,7 +1,6 @@
 import type { Request, Response } from "express";
 import { Note } from "../model/Note.js"
 import { NoteRepo } from "../repository/noteRepo.js";
-import { NOTE_NAME } from '../model/Note.js';
 
 class NoteController{
 
@@ -65,12 +64,19 @@ class NoteController{
     async update(req: Request, res: Response){
         try{
             let id = parseInt(String(req.params["id"]));
-            const new_note = new Note();
-            new_note.id = id;
-            new_note.name = req.body.name;
-            new_note.description = req.body.description;
-
-            await new NoteRepo().update(new_note);
+            const repo = new NoteRepo();
+            const new_note = await repo.retriveById(id);
+            
+            if (!new_note){
+                return res.status(404).json({error: "note not found."});
+            }
+            if (req.body.name !== undefined){
+                new_note.name = req.body.name;
+            }
+            if (req.body.description !== undefined){
+                new_note.description = req.body.description;
+            }
+            await repo.update(new_note);
 
             res.status(200).json({
                 status: "OK!",
@@ -81,3 +87,5 @@ class NoteController{
         }
     }
 }
+
+export default new NoteController();

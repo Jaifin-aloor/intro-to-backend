@@ -12,10 +12,10 @@ import { AutoIncrement, Column, DataType, Model, PrimaryKey, Table } from "seque
 
 export class Note extends Model{
 
+    @AutoIncrement
+    @PrimaryKey
     @Column({
         type: DataType.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
         field: NOTE_ID
     })
     declare id: number

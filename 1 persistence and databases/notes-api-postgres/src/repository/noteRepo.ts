@@ -33,7 +33,7 @@ export class NoteRepo implements INoteRepo{
         }
         new_note.name = note.name;
         new_note.description = note.description;
-        await new_note.save();
+        await new_note.update(new_note);
         }catch(error){
             throw new Error("failed to create note.");
         }
