@@ -1,17 +1,14 @@
 import { Router, Request, Response } from "express";
 import Note from "../models/note.model";
+import { validateCreateNote, validateUpdateNote } from "../utils/validate";
 
 const router = Router();
 
 // CREATE a note
 router.post("/", async (req: Request, res: Response) => {
     try {
+        if (!validateCreateNote(req, res)) return;
         const { title, content } = req.body;
-        if (!title || !content) {
-            return res.status(400).json({
-                message: "title and content are required."
-            });
-        }
         const note = await Note.create({ title, content });
         res.status(201).json(note);
     } catch (error) {
@@ -45,6 +42,7 @@ router.get("/:id", async (req: Request, res: Response) => {
                 message: "Note not found."
             });
         }
+        res.status(200).json(note);
     } catch (error) {
         console.error(error);
         res.status(500).json({
@@ -56,6 +54,7 @@ router.get("/:id", async (req: Request, res: Response) => {
 // UPDATE note
 router.put("/:id", async (req: Request, res: Response) => {
     try {
+        if (!validateUpdateNote(req, res)) return;
         const id = Number(req.params.id);
         const { title, content } = req.body;
         const note = await Note.findByPk(id);
