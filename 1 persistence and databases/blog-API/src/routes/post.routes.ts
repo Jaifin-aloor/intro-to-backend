@@ -2,7 +2,7 @@ import { Router, Request, Response } from "express";
 import Post from "../models/post.model";
 import User from '../models/user.model';
 import { validateCreatePost, validateUpdatePost } from "../utils/validate";
-import { error } from 'node:console';
+
 
 const router = Router();
 
@@ -10,7 +10,7 @@ const router = Router();
 router.post("/", async (req: Request, res: Response) => {
     try {
         if (!validateCreatePost(req, res)) return;
-        const { title, content, userId }  =req.body;
+        const { title, content, userId }  = req.body;
         // Ensure that the user exists
         const user = await User.findByPk(userId);
         if (!user) {
