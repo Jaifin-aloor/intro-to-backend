@@ -1,8 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import app from "./app";
 import sequelize from "./config/database";
-import User from "./models/user.model";
 
-const PORT = process.env.PORT;
+const PORT = Number(process.env.PORT) || 3000;
 
 async function start() {
     try {

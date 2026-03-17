@@ -1,8 +1,9 @@
 import jwt, { SignOptions } from "jsonwebtoken";
+import { UserRole } from "../models/user.model";
 
 interface JwtPayload {
     userId: number;
-    role: string;
+    role: UserRole;
 }
 
 const JWT_SECRET = process.env.JWT_SECRET!;
