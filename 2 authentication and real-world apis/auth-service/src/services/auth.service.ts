@@ -15,20 +15,20 @@ interface LoginInput {
 
 export async function signup(data: SignupInput) {
     const {email, password} = data;
-    console.log("Step 1")
+
     const existingUser = await User.findOne({ where: { email } });
-    console.log("Step 2")
+
     if (existingUser) {
         throw new Error("User already exists.");
     }
     const hashedPassword = await hashPassword(password);
-    console.log("Step 3")
+
     const user = await User.create({
         email, 
         password: hashedPassword,
         role: UserRole.USER
     });
-    console.log("Step 4")
+
     return {
         id: user.id,
         email: user.email

@@ -10,7 +10,7 @@ export async function signup(
         const { email, password } = req.body;
         const user = await authService.signup({email, password})
 
-        res.status(201).json({
+        return res.status(201).json({
             message: "User created successfully.",
             user
         });
@@ -28,7 +28,7 @@ export async function login(
     try {
         const { email, password } = req.body;
         const result = await authService.login({email, password});
-        res.status(200).json({
+        return res.status(200).json({
             message: "Login successful.",
             ...result
         });

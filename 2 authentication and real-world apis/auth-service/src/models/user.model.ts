@@ -60,3 +60,10 @@ User.init(
 );
 
 export default User;
+
+import Note from "./note.model";
+
+User.hasMany(Note, {
+    foreignKey: "userId",
+    as: "notes"
+});

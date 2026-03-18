@@ -3,6 +3,8 @@ dotenv.config();
 
 import app from "./app";
 import sequelize from "./config/database";
+import "./models/user.model";
+import "./models/note.model";
 
 const PORT = Number(process.env.PORT) || 3000;
 
