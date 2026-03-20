@@ -1,10 +1,5 @@
 import jwt, { SignOptions } from "jsonwebtoken";
-import { UserRole } from "../models/user.model";
-
-interface JwtPayload {
-    userId: number;
-    role: UserRole;
-}
+import { JwtPayload } from '../types/express';
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN as SignOptions["expiresIn"] || "1h";
