@@ -1,10 +1,6 @@
 import jwt, { Secret, SignOptions } from "jsonwebtoken";
-import { UserRole } from "../models/user.model";
+import { JwtPayload } from "../types/express";
 
-export interface JwtPayload {
-    userId: number;
-    role: UserRole;
-}
 
 const JWT_SECRET: Secret = process.env.JWT_SECRET as Secret;
 
